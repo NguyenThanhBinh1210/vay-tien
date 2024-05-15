@@ -1,7 +1,11 @@
+import { useState } from 'react'
 import card from '~/assets/images/card.d49cd7cf12be322a95cb.png'
 import wallet from '~/assets/images/wallet.911a2f9edd9a6151a551.jpg'
+import BienDong from '~/modules/BienDong'
 
 const Wallet = () => {
+  const [isShowBienDong, setShowBienDong] = useState(false)
+
   return (
     <div>
       <div className='flex items-center justify-center text-white font-bold bg-primary py-2 px-3'>Ví tiền</div>
@@ -13,7 +17,9 @@ const Wallet = () => {
           <span className='font-bold'>Số dư ví:</span>
           <span className='font-bold text-primary/65'>0 VND</span>
         </div>
-        <p className='text-blue-500 underline text-sm mt-2 cursor-pointer'>Biến động số dư</p>
+        <p onClick={() => setShowBienDong(true)} className='text-blue-500 underline text-sm mt-2 cursor-pointer'>
+          Biến động số dư
+        </p>
         <button className='bg-primary px-4 rounded-md py-2 border mt-5 w-full font-bold text-white flex items-center justify-between mx-auto'>
           Rút tiền về tài khoản liên kết{' '}
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
@@ -26,6 +32,7 @@ const Wallet = () => {
         </button>
         <img className='mt-4' src={wallet} alt='wallet' />
       </div>
+      <BienDong isOpen={isShowBienDong} onClose={() => setShowBienDong(false)}></BienDong>
     </div>
   )
 }

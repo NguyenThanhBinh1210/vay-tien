@@ -1,8 +1,14 @@
+import { useState } from 'react'
+import imga from '~/assets/images/tick.e14cb23e178b8d3acd8f.png'
+import KhoanVay from '~/modules/KhoanVay'
+import XacMinh from '~/modules/XacMinh'
 const Me = () => {
+  const [isShowVay, setShowVay] = useState(false)
+  const [isShowXacMinh, setShowXacMinh] = useState(false)
   return (
     <div>
       <div className='flex items-center justify-center text-white font-bold bg-primary py-2 px-3'>Hồ sơ</div>
-      <div className='px-5 text-sm'>
+      <div className='px-5 text-sm pb-20'>
         <div className='w-[120px] h-[120px] rounded-full overflow-hidden mx-auto mt-5'>
           <svg
             className='w-full h-full'
@@ -84,9 +90,14 @@ const Me = () => {
             </svg>
             Bổ sung CMND/CCCD và chân dung để hoàn tất định danh
           </div>
-          <button className='text-primary font-bold block ml-auto mt-3'>Xác thực ngay</button>
+          <button onClick={() => setShowXacMinh(true)} className='text-primary font-bold block ml-auto mt-3'>
+            Xác thực ngay
+          </button>
         </div>
-        <button className='bg-primary px-4 rounded-md py-2 border mt-6 w-full font-bold text-white flex items-center justify-between mx-auto'>
+        <button
+          onClick={() => setShowVay(true)}
+          className='bg-primary px-4 rounded-md py-2 border mt-6 w-full font-bold text-white flex items-center justify-between mx-auto'
+        >
           Hợp đồng vay
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-6 h-6'>
             <path
@@ -133,7 +144,11 @@ const Me = () => {
           </svg>
           Đăng xuất
         </button>
+        <img className='w-[100px] mt-7 mx-auto' src={imga} alt='imga' />
+        <p className='text-center px-2'>® Bản quyền thuộc về CÔNG TY TÀI CHÍNH TNHH MTV HOME CREDIT VIỆT NAM</p>
       </div>
+      <KhoanVay isOpen={isShowVay} onClose={() => setShowVay(false)}></KhoanVay>
+      <XacMinh isOpen={isShowXacMinh} onClose={() => setShowXacMinh(false)}></XacMinh>
     </div>
   )
 }
